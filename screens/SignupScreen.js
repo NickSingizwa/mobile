@@ -40,21 +40,21 @@ const SignupScreen = () => {
                 <Text style={styles.text}>Supa<Text style={styles.span}>Menu</Text></Text>
                 <View style={styles.microcontainer}>
                 <Text style={styles.subtitles}>Welcome...</Text>
-                <Text>please fill in the information</Text>
+                <Text style={tw`text-gray-600`}>please fill in the information</Text>
                 </View>
                 <View style={styles.form}>
-                <CustomInput placeholder="full name" icon="user" keyBoardType="default" onChangeText={handleNameChange}/>
-                <CustomInput placeholder="Enter number" icon="phone" keyBoardType='numeric' onChangeText={handlePhoneChange}/>
-                <CustomInput placeholder="enter email" icon="mail" keyBoardType="email-address" onChangeText={handleEmailChange}/>
-                <CustomInput placeholder="password" icon="lock" keyBoardType="default" HiddenText onChangeText={handlePassChange}/>
-                <CustomButton text="Proceed" onPress={handleProceed}/>
+                <CustomInput placeholder="Full Name" icon="user" keyBoardType="default" onChangeText={handleNameChange}/>
+                <CustomInput placeholder="Phone Number" icon="phone" keyBoardType='numeric' onChangeText={handlePhoneChange}/>
+                <CustomInput placeholder="Your Email" icon="mail" keyBoardType="email-address" onChangeText={handleEmailChange}/>
+                <CustomInput placeholder="Password" icon="lock" keyBoardType="default" HiddenText onChangeText={handlePassChange}/>
+                <CustomButton text="Proceed" onPress={handleProceed} bg='#fc9403' color='white'/>
                 <View style={styles.linecontainer}>
                     <View style={styles.line} />
                     <Text style={styles.linetext}>or</Text>
                     <View style={styles.line} />
                 </View>
                 <Text style={tw`text-gray-600`}>If you have a PMG account</Text>
-                <CustomButton text="sign in"/>
+                <CustomButton text="sign in" bg='#fc9403' color='white'/>
                 <Text>Already have an account? <Text style={tw`text-yellow-600 underline`} onPress={()=>navigation.navigate('Login')}>Signin</Text></Text>
                 </View>
             </View>
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
   linecontainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 6,
   },
 
   line: {

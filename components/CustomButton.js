@@ -2,10 +2,10 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 
-const CustomButton = ({ text, onPress }) => {
+const CustomButton = ({ text, onPress, bg, color, border }) => {
   return (
-    <TouchableOpacity style={[tw`w-80`,styles.button]} onPress={onPress}>
-      <Text style={styles.buttonText}>{text}</Text>
+    <TouchableOpacity style={[tw`w-80 ${border}`,styles.button,{backgroundColor: bg}]} onPress={onPress}>
+      <Text style={[styles.buttonText,{color}]}>{text}</Text>
     </TouchableOpacity>
   );
 };
@@ -13,8 +13,7 @@ const CustomButton = ({ text, onPress }) => {
 const styles = StyleSheet.create({
 
   button: {
-    backgroundColor: '#fc9403',
-    margin: 20,
+    margin: 10,
     paddingVertical: 10,
     // paddingHorizontal: 120,
     borderRadius: 5,
@@ -23,7 +22,6 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
