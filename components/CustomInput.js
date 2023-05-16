@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 7,
     paddingHorizontal: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
   },
 
   icon: {

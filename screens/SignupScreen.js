@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
+import tw from 'tailwind-react-native-classnames';
 
 const SignupScreen = () => {
     const navigation = useNavigation();
@@ -32,32 +33,34 @@ const SignupScreen = () => {
     }
 
   return (
-  <View style={styles.container}>
-    <View style={styles.subcontainer}>
-      <View style={styles.minicontainer}>
-        <Text style={styles.text}>Supa<Text style={styles.span}>Menu</Text></Text>
-        <View style={styles.microcontainer}>
-          <Text style={styles.subtitles}>Welcome...</Text>
-          <Text>please fill in the information</Text>
+    <ScrollView>
+        <View style={styles.container}>
+            <View style={styles.subcontainer}>
+            <View style={styles.minicontainer}>
+                <Text style={styles.text}>Supa<Text style={styles.span}>Menu</Text></Text>
+                <View style={styles.microcontainer}>
+                <Text style={styles.subtitles}>Welcome...</Text>
+                <Text>please fill in the information</Text>
+                </View>
+                <View style={styles.form}>
+                <CustomInput placeholder="full name" icon="user" keyBoardType="default" onChangeText={handleNameChange}/>
+                <CustomInput placeholder="Enter number" icon="phone" keyBoardType='numeric' onChangeText={handlePhoneChange}/>
+                <CustomInput placeholder="enter email" icon="mail" keyBoardType="email-address" onChangeText={handleEmailChange}/>
+                <CustomInput placeholder="password" icon="lock" keyBoardType="default" HiddenText onChangeText={handlePassChange}/>
+                <CustomButton text="Proceed" onPress={handleProceed}/>
+                <View style={styles.linecontainer}>
+                    <View style={styles.line} />
+                    <Text style={styles.linetext}>or</Text>
+                    <View style={styles.line} />
+                </View>
+                <Text style={tw`text-gray-600`}>If you have a PMG account</Text>
+                <CustomButton text="sign in"/>
+                <Text>Already have an account? <Text style={tw`text-yellow-600 underline`} onPress={()=>navigation.navigate('Login')}>Signin</Text></Text>
+                </View>
+            </View>
+            </View>
         </View>
-        <View style={styles.form}>
-          <CustomInput placeholder="full name" icon="user" keyBoardType="default" value={names} onChangeText={handleNameChange}/>
-          <CustomInput placeholder="Enter number" icon="phone" keyBoardType="numeric" value={phone} onChangeText={handlePhoneChange}/>
-          <CustomInput placeholder="enter email" icon="mail" keyBoardType="email-address" value={email} onChangeText={handleEmailChange}/>
-          <CustomInput placeholder="password" icon="lock" keyBoardType="default" HiddenText value={pass} onChangeText={handlePassChange}/>
-          <CustomButton text="Proceed" onPress={handleProceed}/>
-          <View style={styles.linecontainer}>
-            <View style={styles.line} />
-            <Text style={styles.linetext}>or</Text>
-            <View style={styles.line} />
-          </View>
-          <Text>If you have a PMG account</Text>
-          <CustomButton text="sign in"/>
-          <Text>Already have an account? <Text onPress={()=>navigation.navigate('Login')}>Signin</Text></Text>
-        </View>
-      </View>
-    </View>
-  </View>
+    </ScrollView>
     
   )
 }
