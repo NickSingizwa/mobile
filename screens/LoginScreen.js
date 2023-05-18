@@ -43,7 +43,7 @@ const SignupScreen = () => {
                 </View>
                 <CustomButton text="Login with Google" border='border border-gray-500' color='gray'/>
                 <CustomButton text="Login with Facebook" border='border border-gray-500' color='gray'/>
-                <Text style={tw`text-yellow-600 mb-5`}>Forgot Password?</Text>
+                <Text style={tw`text-yellow-600 mb-5`} onPress={()=>navigation.navigate('NearbyRestaurants')}>Forgot Password?</Text>
                 <Text>Don't have an account? <Text style={tw`text-yellow-600 underline`} onPress={()=>navigation.navigate('Signup')}>Register</Text></Text>
                 </View>
             </View>
