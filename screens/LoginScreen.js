@@ -4,11 +4,13 @@ import { useNavigation } from '@react-navigation/native';
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 import tw from 'tailwind-react-native-classnames';
+import * as SecureStore from 'expo-secure-store';
+import axios from 'axios';
 
 const SignupScreen = () => {
     const navigation = useNavigation();
     const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+    const [password, setPass] = useState('');
   
     const handleEmailChange = (text) => {
       setEmail(text);
@@ -18,8 +20,28 @@ const SignupScreen = () => {
       setPass(text);
     };
  
-    const handleProceed = ()=>{
+    const handleProceedLogin = async ()=>{
         alert('Proceeding...');
+        if (!email || !password) {
+          Alert.alert('Validation Error', 'Please enter both email and password.');
+          return;
+        }
+    
+        try {
+          const response = await axios.post('http://endpoint.com/login', {
+            email,
+            password,
+          });
+          const token = response.data.token;
+          await SecureStore.setItemAsync('token', token);
+    
+          setEmail('');
+          setPass('');
+    
+          Alert.alert('Login Successful');
+        } catch (error) {
+          Alert.alert('Login Failed', error.response.data.message);
+        }
     }
 
   return (
@@ -35,7 +57,7 @@ const SignupScreen = () => {
                 <View style={styles.form}>
                 <CustomInput placeholder="Your Email" icon="mail" keyBoardType="email-address" onChangeText={handleEmailChange}/>
                 <CustomInput placeholder="Password" icon="lock" keyBoardType="default" HiddenText onChangeText={handlePassChange}/>
-                <CustomButton text="Signin" onPress={handleProceed} bg='#fc9403' color='white'/>
+                <CustomButton text="Signin" onPress={handleProceedLogin} bg='#fc9403' color='white'/>
                 <View style={styles.linecontainer}>
                     <View style={styles.line} />
                     <Text style={styles.linetext}>or</Text>
