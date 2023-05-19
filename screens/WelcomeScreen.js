@@ -5,8 +5,8 @@ import tw from 'tailwind-react-native-classnames';
 const WelcomeScreen = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      // navigation.navigate('NearbyRestaurants');
-      navigation.navigate('Signup');
+      navigation.navigate('Facture');
+      // navigation.navigate('Signup');
     }, 3000);
 
     return () => clearTimeout(timer);
