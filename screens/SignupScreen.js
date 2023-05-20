@@ -54,7 +54,7 @@ const SignupScreen = () => {
                     <View style={styles.line} />
                 </View>
                 <Text style={tw`text-gray-600`}>If you have a PMG account</Text>
-                <CustomButton text="sign in" bg='#fc9403' color='white'/>
+                <CustomButton text="sign in" bg='#fc9403' color='white' onPress={()=>navigation.navigate('Login')}/>
                 <Text>Already have an account? <Text style={tw`text-yellow-600 underline`} onPress={()=>navigation.navigate('Login')}>Signin</Text></Text>
                 </View>
             </View>

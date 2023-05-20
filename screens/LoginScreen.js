@@ -57,7 +57,8 @@ const SignupScreen = () => {
                 <View style={styles.form}>
                 <CustomInput placeholder="Your Email" icon="mail" keyBoardType="email-address" onChangeText={handleEmailChange}/>
                 <CustomInput placeholder="Password" icon="lock" keyBoardType="default" HiddenText onChangeText={handlePassChange}/>
-                <CustomButton text="Signin" onPress={handleProceedLogin} bg='#fc9403' color='white'/>
+                {/* <CustomButton text="Signin" onPress={handleProceedLogin} bg='#fc9403' color='white'/> */}
+                <CustomButton text="Signin" onPress={()=>navigation.navigate('NearbyRestaurants')} bg='#fc9403' color='white'/>
                 <View style={styles.linecontainer}>
                     <View style={styles.line} />
                     <Text style={styles.linetext}>or</Text>
@@ -65,7 +66,7 @@ const SignupScreen = () => {
                 </View>
                 <CustomButton text="Login with Google" border='border border-gray-500' color='gray'/>
                 <CustomButton text="Login with Facebook" border='border border-gray-500' color='gray'/>
-                <Text style={tw`text-yellow-600 mb-5`} onPress={()=>navigation.navigate('NearbyRestaurants')}>Forgot Password?</Text>
+                <Text style={tw`text-yellow-600 mb-5`}>Forgot Password?</Text>
                 <Text>Don't have an account? <Text style={tw`text-yellow-600 underline`} onPress={()=>navigation.navigate('Signup')}>Register</Text></Text>
                 </View>
             </View>

@@ -15,12 +15,6 @@ export default function FactureScreen({ navigation, route }) {
     const checkDetails = async ()=>{
         
     }
-
-    // useEffect(() => {
-    //     if(modalVisible){
-    //         getOrderData();
-    //     }
-    // }, [modalVisible])
     
     return (
         <SafeAreaView style={[styles.container, {flex: 1}]}>
@@ -59,7 +53,7 @@ export default function FactureScreen({ navigation, route }) {
                 </View>
             </Modal>
             <Image
-                source={require("../../assets/images/order-success.png")}
+                source={require("../assets/order-success.png")}
                 style={{ width: 300, height: 200 }}
             />
             <Text style={styles.text}>Payment Success, Yayy!</Text>
@@ -85,11 +79,11 @@ export default function FactureScreen({ navigation, route }) {
             </TouchableOpacity>
 
             <TouchableHighlight onPressIn={()=> onDownloadInvoice()} 
-            style={{backgroundColor: "#f7941d", padding: 15, borderRadius: 5}}>
+                style={{backgroundColor: "#f7941d", padding: 15, borderRadius: 5}}>
                <Text style={{color: "white", fontSize: 16}}>Download Invoice</Text>
             </TouchableHighlight>
 
-            <Image source={require("../assets/logo_dark.png")}/>
+            <Image style={{ width: 230, height: 90 }} source={require("../assets/logo_dark.png")}/>
         </SafeAreaView>
     );
 }
