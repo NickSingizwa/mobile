@@ -5,7 +5,7 @@ import tw from 'tailwind-react-native-classnames';
 const WelcomeScreen = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      // navigation.navigate('Facture');
+      // navigation.navigate('ShowMenu');
       navigation.navigate('Signup');
     }, 3000);
 

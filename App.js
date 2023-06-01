@@ -7,6 +7,7 @@ import SignupScreen from './screens/SignupScreen';
 import SearchScreen from './screens/SearchScreen';
 import NearbyRestaurants from './screens/NearbyRestaurants';
 import FactureScreen from './screens/FactureScreen';
+import ShowMenuScreen from './screens/ShowMenuScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const App = () => {
         <Stack.Screen name="Search" component={SearchScreen} options={{headerShown: false}}/>
         <Stack.Screen name="NearbyRestaurants" component={NearbyRestaurants} options={{headerShown: false}}/>
         <Stack.Screen name="Facture" component={FactureScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="ShowMenu" component={ShowMenuScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 import tw from 'tailwind-react-native-classnames';
+import API_URL from '../utils/api';
+import axios from 'axios';
 
 const SignupScreen = () => {
     const navigation = useNavigation();
@@ -11,6 +13,7 @@ const SignupScreen = () => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [phone, setPhone] = useState('');
+    const [loading, setLoading] = useState(false);
   
     const handleNameChange = (text) => {
       setNames(text);
@@ -29,7 +32,29 @@ const SignupScreen = () => {
     };
  
     const handleProceed = ()=>{
-        alert('Proceeding...');
+      if (!names || !email || !phone || !pass) {
+        Alert.alert('Error', 'Please provide all fields');
+        return;
+      }
+        setLoading(true);
+        axios.post(API_URL+'/user/register', {
+          fullName: names,
+          phoneNumber: phone,
+          email: email,
+          password: pass
+        })
+        .then((res) => {
+            setLoading(false);
+            console.log(...res?.data,"success response")
+            if(res?.data?.status === 'success'){
+                navigation.navigate('Login');
+            }
+        })
+        .catch((err) => {
+            setLoading(false);
+            console.log(err?.response?.data,"catch error");
+            alert('An error occured');
+        })
     }
 
   return (
@@ -43,11 +68,11 @@ const SignupScreen = () => {
                 <Text style={tw`text-gray-600`}>please fill in the information</Text>
                 </View>
                 <View style={styles.form}>
-                <CustomInput placeholder="Full Name" icon="user" keyBoardType="default" onChangeText={handleNameChange}/>
-                <CustomInput placeholder="Phone Number" icon="phone" keyBoardType='numeric' onChangeText={handlePhoneChange}/>
-                <CustomInput placeholder="Your Email" icon="mail" keyBoardType="email-address" onChangeText={handleEmailChange}/>
-                <CustomInput placeholder="Password" icon="lock" keyBoardType="default" HiddenText onChangeText={handlePassChange}/>
-                <CustomButton text="Proceed" onPress={handleProceed} bg='#fc9403' color='white'/>
+                <CustomInput value={names} placeholder="Full Name" icon="user" keyBoardType="default" onChange={handleNameChange}/>
+                <CustomInput value={phone} placeholder="Phone Number" icon="phone" keyBoardType='numeric' onChange={handlePhoneChange}/>
+                <CustomInput value={email} placeholder="Your Email" icon="mail" keyBoardType="email-address" onChange={handleEmailChange}/>
+                <CustomInput value={pass} placeholder="Password" icon="lock" keyBoardType="default" HiddenText onChange={handlePassChange}/>
+                <CustomButton text={loading ? 'Proceeding ...' : 'Proceed'} onPress={handleProceed} bg='#fc9403' color='white'/>
                 <View style={styles.linecontainer}>
                     <View style={styles.line} />
                     <Text style={styles.linetext}>or</Text>
