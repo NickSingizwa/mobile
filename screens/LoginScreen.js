@@ -34,6 +34,7 @@ const SignupScreen = () => {
             email,
             password,
           });
+          // console.log("response",response?.data?.token)
           const token = response?.data?.token;
           const done = await SecureStore.setItemAsync('token', token);
     
@@ -42,13 +43,13 @@ const SignupScreen = () => {
             setPass('');
       
             setLoading(false);
-            Alert.alert('Login Successful');
+            // Alert.alert('Login Successful');
             navigation.navigate('NearbyRestaurants')
           }
 
         } catch (error) {
           setLoading(false);
-          Alert.alert('Login Failed', error.response.data.message);
+          Alert.alert('Login Failed', error?.response?.data?.message);
         }
     }
 
@@ -63,8 +64,8 @@ const SignupScreen = () => {
                 <Text style={tw`text-gray-600`}>Sign in to continue</Text>
                 </View>
                 <View style={styles.form}>
-                <CustomInput placeholder="Your Email" icon="mail" keyBoardType="email-address" onChangeText={handleEmailChange}/>
-                <CustomInput placeholder="Password" icon="lock" keyBoardType="default" HiddenText onChangeText={handlePassChange}/>
+                <CustomInput value={email} placeholder="Your Email" icon="mail" keyBoardType="email-address" onChange={handleEmailChange}/>
+                <CustomInput value={password} placeholder="Password" icon="lock" keyBoardType="default" HiddenText onChange={handlePassChange}/>
                 <CustomButton text={loading ? 'Signing in ...' : 'Signin'} onPress={handleProceedLogin} bg='#fc9403' color='white'/>
                 <View style={styles.linecontainer}>
                     <View style={styles.line} />

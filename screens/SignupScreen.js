@@ -45,15 +45,16 @@ const SignupScreen = () => {
         })
         .then((res) => {
             setLoading(false);
-            console.log(...res?.data,"success response")
-            if(res?.data?.status === 'success'){
+            // console.log(res?.data?.message,"success response")
+            if(res?.data?.message === 'Signup successful'){
+                // alert(res?.data?.message);
                 navigation.navigate('Login');
             }
         })
         .catch((err) => {
             setLoading(false);
-            console.log(err?.response?.data,"catch error");
-            alert('An error occured');
+            console.log(err,"catch err");
+            alert(err?.response?.data?.message===undefined ? "Network Error" : err?.response?.data?.message);
         })
     }
 
