@@ -36,9 +36,9 @@ const SignupScreen = () => {
           });
           // console.log("response",response?.data?.token)
           const token = response?.data?.token;
-          const done = await SecureStore.setItemAsync('token', token);
+          await SecureStore.setItemAsync('token', token);
     
-          if (!done) {
+          if (token) {
             setEmail('');
             setPass('');
       
@@ -48,6 +48,7 @@ const SignupScreen = () => {
           }
 
         } catch (error) {
+          console.log(error,"catch error")
           setLoading(false);
           Alert.alert('Login Failed', error?.response?.data?.message);
         }

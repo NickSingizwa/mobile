@@ -47,7 +47,6 @@ const SignupScreen = () => {
             setLoading(false);
             // console.log(res?.data?.message,"success response")
             if(res?.data?.message === 'Signup successful'){
-                // alert(res?.data?.message);
                 navigation.navigate('Login');
             }
         })
